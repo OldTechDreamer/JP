@@ -1,0 +1,24 @@
+{
+	"comment" : "This is an example JSON string used for testing",
+	
+	"version" : '1.0',
+	"working": true,
+	"idears" : false,
+	"tuna" : null,
+	
+	"author" :
+	{
+		"name" : "Nicholas Wright",
+		"age" : 30,
+		'makes mistakes' : true,
+		"items" : 
+		[
+			"Glasses",
+			"Phone",
+			"Random electronic stuff",
+			23.36664289109
+		]
+	},
+	
+	"compact":{"value":"Compact \"JSON\"",'number':64}
+}
