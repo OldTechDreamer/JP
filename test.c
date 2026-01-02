@@ -28,14 +28,32 @@ int main(void)
 	char const * p;
 	
 
-	size = jp_char(jp_key(jp_key(json, "author"), "name"), buffer, 64);
+	size = jp_char(jp_value(jp_value(json, "author"), "name"), buffer, 64);
 	if (size == -1) { print_error(json); return 1; }
 	printf("The author's name is: %s\n", buffer);
 	
-	size = jp_char(jp_key(jp_key(json, "compact"), "value"), buffer, 64);
+	size = jp_char(jp_value(jp_value(json, "compact"), "value"), buffer, 64);
 	if (size == -1) { print_error(json); return 1; }
 	printf("Compact json: %s\n", buffer);
 	
+	printf("\nThe author has the following items:\n");
+	char const * items = jp_value(jp_value(json, "author"), "items");
+	int i = 0;
+	
+	while(1)
+	{
+	  char const * item = jp_index(items, i);
+	  
+	  if (item == 0)
+	  {
+	    break;
+	  }
+	  
+	  jp_char(item, buffer, 64);
+	  printf("\tItem %d: %s\n", i, buffer);
+	  
+	  i++;
+	}
 	
 	return 0;
 }
