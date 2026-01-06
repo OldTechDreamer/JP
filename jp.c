@@ -940,6 +940,11 @@ int jp_char(char const * json, char * value_buffer, int value_size)
 // Returns 0 on success, -1 on failure (either due to syntax or the number exceeded the range -2147483648 to 2147483647).
 int jp_int(char const * json, int * value)
 {
+	if (json == 0)
+	{
+		return -1;
+	}
+
 	*value = 0;
 
 	// Check sign.
@@ -995,6 +1000,11 @@ int jp_int(char const * json, int * value)
 // Returns 0 on success, -1 on failure (either due to syntax or the number exceeded the range 0 to 4294967295).
 int jp_uint(char const * json, unsigned int * value)
 {
+	if (json == 0)
+	{
+		return -1;
+	}
+
 	*value = 0;
 
 	// Loop through digits.
