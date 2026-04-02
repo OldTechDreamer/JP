@@ -836,7 +836,7 @@ int jp_keys(char const * json, char const ** keys, int keys_size)
 
 
 // Store the value in the JSON string starting at [json] into [value_buffer] of maximum size [value_size].
-// [json] should come from the return value of jp_value() or jq_index().
+// [json] should come from the return value of jq_key() or jq_index().
 // Returns the length of the value (excluding null terminator) on success, and -1 on failure.
 // If [value_size] is 0, the function will still return the length of the string.
 // Numbers, null, true, and false are set as "null", "true", etc...
@@ -936,7 +936,7 @@ int jp_char(char const * json, char * value_buffer, int value_size)
 }
 
 // Store the signed integer value in the JSON string starting at [json] into [value].
-// [json] should come from the return value of jq_value() or jq_index().
+// [json] should come from the return value of jq_key() or jq_index().
 // Returns 0 on success, -1 on failure (either due to syntax or the number exceeded the range -2147483648 to 2147483647).
 int jp_int(char const * json, int * value)
 {
@@ -1055,12 +1055,12 @@ int jp_error(char const * const json, char * value_buffer, int value_size)
 	
 	switch (jp_error_code)
 	{
-		case JP_ERROR_SYNTAX:	name = "Invalid JSON\n";				break;
-		case JP_ERROR_KEY:	name = "Key not found\n";				break;
-		case JP_ERROR_INDEX:	name = "Index not found\n";				break;
-		case JP_ERROR_ESCAPE:	name = "Invalid escape code\n";				break;
-		case JP_ERROR_LIST:	name = "List not expected here\n";			break;
-		case JP_ERROR_NUMBER:	name = "Invalid character in integer\n";		break;
+		case JP_ERROR_SYNTAX:	name = "Invalid JSON\n";							break;
+		case JP_ERROR_KEY:		name = "Key not found\n";							break;
+		case JP_ERROR_INDEX:	name = "Index not found\n";							break;
+		case JP_ERROR_ESCAPE:	name = "Invalid escape code\n";						break;
+		case JP_ERROR_LIST:		name = "List not expected here\n";					break;
+		case JP_ERROR_NUMBER:	name = "Invalid character in integer\n";			break;
 		case JP_ERROR_OVERFLOW:	name = "Value does not fit in desired data type\n";	break;
 	}
 	
